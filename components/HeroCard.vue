@@ -1,36 +1,30 @@
 <script setup lang="ts">
-// De interface die de data beschrijft die we verwachten
-interface Vkm {
-  code: string;
-  location: string;
-  title: string;
+// De interface die de data beschrijft die we van de backend verwachten
+interface ChoiceModule {
+  _id: string;
+  name: string;
   description: string;
-  period: string;
-  ects: number;
-  language: string;
-  imageUrl: string;
+  studypoints: number;
+  period: number;
+  location: string;
 }
 
 const emit = defineEmits(['moreInfo']);
 const props = defineProps<{
-  data: Vkm
+  data: ChoiceModule
 }>();
 
 function onMeerInfoClick() {
-  emit('moreInfo', props.data.code);
+  emit('moreInfo', props.data._id);
 }
 </script>
 
 <template>
   <div class="hero-container">
-    <div class="hero-image">
-      <img :src="data.imageUrl" alt="Afbeelding van het proces">
-    </div>
     <div class="hero-content">
       <div class="tags">
-        <span class="tag p3">{{ data.period }}</span>
-        <span class="tag ects">{{ data.ects }} ECTS</span>
-        <span class="tag nl">{{ data.language }}</span>
+        <span class="tag p3">P{{ data.period }}</span>
+        <span class="tag ects">{{ data.studypoints }} ECTS</span>
       </div>
 
       <div class="location">
@@ -38,8 +32,8 @@ function onMeerInfoClick() {
       </div>
 
       <div class="course-info">
-        <div class="course-code">{{ data.code }}</div>
-        <h2 class="course-title">{{ data.title }}</h2>
+        <div class="course-code">ID: {{ data._id }}</div>
+        <h2 class="course-title">{{ data.name }}</h2>
         <p class="course-description">{{ data.description }}</p>
       </div>
 
@@ -55,5 +49,6 @@ function onMeerInfoClick() {
 </template>
 
 <style scoped>
+/* Scoped styles blijven gekoppeld aan deze component */
 @import '~/assets/css/VKM.css';
 </style>
