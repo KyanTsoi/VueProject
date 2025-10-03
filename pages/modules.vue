@@ -9,7 +9,9 @@ interface ChoiceModule {
   _id: string;
   name: string;
   description: string;
-  // ... andere velden
+  studypoints: number; // Toegevoegd
+  period: number;      // Toegevoegd
+  location: string;    // Toegevoegd
   tags: Tag[];
 }
 
