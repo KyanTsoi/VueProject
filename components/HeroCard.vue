@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// De interface die de data beschrijft die we van de backend verwachten
+// ... je script blijft hetzelfde
 interface ChoiceModule {
   _id: string;
   name: string;
@@ -22,27 +22,14 @@ function onMeerInfoClick() {
 <template>
   <div class="hero-container">
     <div class="hero-content">
-      <div class="tags">
-        <span class="tag p3">P{{ data.period }}</span>
-        <span class="tag ects">{{ data.studypoints }} ECTS</span>
-      </div>
-
-      <div class="location">
-        <span>📍 {{ data.location }}</span>
-      </div>
-
-      <div class="course-info">
-        <div class="course-code">ID: {{ data._id }}</div>
-        <h2 class="course-title">{{ data.name }}</h2>
-        <p class="course-description">{{ data.description }}</p>
-      </div>
-
       <div class="action-buttons">
         <button class="info-button" @click="onMeerInfoClick">Meer info</button>
         <button class="enroll-button">
           Aanmelden via Osiris ↗
         </button>
-        <button class="favorite-button">♡</button>
+        
+        <slot name="actions" :moduleId="data._id"></slot>
+
       </div>
     </div>
   </div>
